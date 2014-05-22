@@ -11,10 +11,12 @@ unzip -o /vagrant/$1.zip -d /usr/share/
 chown -R storm:storm /usr/share/$1
 ln -s /usr/share/$1 /usr/share/storm
 ln -s /usr/share/storm/bin/storm /usr/bin/storm
-unzip -o -j /vagrant/storm-starter_lib.zip -d /usr/share/storm/lib
+#unzip -o -j /vagrant/storm-starter_lib.zip -d /usr/share/storm/lib
 mkdir /etc/storm
 chown storm:storm /etc/storm
 
+gunzip /vagrant/$2.tar.gz
+tar xf /vagrant/$2.tar -C /usr/share/java
 rm /usr/share/storm/conf/storm.yaml
 cp /vagrant/storm.yaml /usr/share/storm/conf/
 cp /vagrant/cluster.xml /usr/share/storm/logback/

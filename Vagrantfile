@@ -5,7 +5,8 @@
 VAGRANTFILE_API_VERSION = "2"
 STORM_VERSION = "apache-storm-0.9.1-incubating"
 STORM_ARCHIVE = "#{STORM_VERSION}.zip"
-STORM_LIB_FILES ="storm-starter_lib"
+CASSANDRA_DRIVER_VERSION = "cassandra-java-driver-2.0.2"
+CASSANDRA_DRIVER_ARCHIVE = "#{CASSANDRA_DRIVER_VERSION}.tar.gz"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
@@ -15,11 +16,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.hostmanager.enabled = true
   
   if(!File.exist?(STORM_ARCHIVE))
-    `wget -N https://dl.dropboxusercontent.com/s/dj86w8ojecgsam7/apache-storm-0.9.1-incubating.zip`
+    `wget -N http://mirror.ox.ac.uk/sites/rsync.apache.org/incubator/storm/apache-storm-0.9.1-incubating/apache-storm-0.9.1-incubating.zip`
   end
+  if(!File.exist?(CASSANDRA_DRIVER_ARCHIVE))
+    `wget -N http://downloads.datastax.com/java-driver/cassandra-java-driver-2.0.2.tar.gz`
+  end
+  
   
   config.vm.define "zookeeper" do |zookeeper|
     zookeeper.vm.box = "precise"
+    zookeeper.vm.box_url = "http://files.vagrantup.com/precise64.box"
     zookeeper.vm.network "private_network", ip: "192.168.2.50"
     zookeeper.vm.hostname = "zookeeper"
     zookeeper.vm.provision "shell", path: "install-zookeeper.sh"
@@ -30,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     nimbus.vm.network "private_network", ip: "192.168.2.51"
     nimbus.vm.hostname = "nimbus"
     
-    nimbus.vm.provision "shell", path: "install-storm.sh", args: STORM_VERSION
+    nimbus.vm.provision "shell", path: "install-storm.sh", args: "#{STORM_VERSION} #{CASSANDRA_DRIVER_VERSION}"
     
     nimbus.vm.provision "shell", path: "config-supervisord.sh", args: "nimbus"
     
