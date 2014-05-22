@@ -6,7 +6,8 @@ VAGRANTFILE_API_VERSION = "2"
 STORM_VERSION = "apache-storm-0.9.1-incubating"
 STORM_ARCHIVE = "#{STORM_VERSION}.zip"
 CASSANDRA_DRIVER_VERSION = "cassandra-java-driver-2.0.2"
-CASSANDRA_DRIVER_ARCHIVE = "#{CASSANDRA_DRIVER_VERSION}.tar"
+# not gz file as that seems to get unzipped while this script runs on the host machine
+CASSANDRA_DRIVER_ARCHIVE = "#{CASSANDRA_DRIVER_VERSION}.tar" 
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
@@ -52,7 +53,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     supervisor.vm.network "private_network", ip: "192.168.2.52"
     supervisor.vm.hostname = "storm1"
     
-    supervisor.vm.provision "shell", path: "install-storm.sh", args: STORM_VERSION
+    supervisor.vm.provision "shell", path: "install-storm.sh", args: "#{STORM_VERSION} #{CASSANDRA_DRIVER_VERSION}"
     
     supervisor.vm.provision "shell", path: "config-supervisord.sh", args: "supervisor"
     
@@ -67,7 +68,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     supervisor.vm.network "private_network", ip: "192.168.2.53"
     supervisor.vm.hostname = "storm2"
     
-    supervisor.vm.provision "shell", path: "install-storm.sh", args: STORM_VERSION
+    supervisor.vm.provision "shell", path: "install-storm.sh", args: "#{STORM_VERSION} #{CASSANDRA_DRIVER_VERSION}"
     
     supervisor.vm.provision "shell", path: "config-supervisord.sh", args: "supervisor"
     

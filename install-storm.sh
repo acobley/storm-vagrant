@@ -16,7 +16,9 @@ mkdir /etc/storm
 chown storm:storm /etc/storm
 
 gunzip /vagrant/$2.tar.gz
-tar xf /vagrant/$2.tar -C /usr/share/java
+tar xvf /vagrant/$2.tar -C /usr/share/java
+mv /usr/share/java/$2/*.jar /usr/share/java
+mv /usr/share/java/cassandra-java-driver-2.0.2/lib/*.jar /usr/share/java
 rm /usr/share/storm/conf/storm.yaml
 cp /vagrant/storm.yaml /usr/share/storm/conf/
 cp /vagrant/cluster.xml /usr/share/storm/logback/
