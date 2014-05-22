@@ -1,5 +1,5 @@
 apt-get update
-apt-get install -y unzip supervisor openjdk-6-jdk
+apt-get install -y unzip supervisor openjdk-7-jdk
 
 /etc/init.d/supervisor stop
 
@@ -7,10 +7,11 @@ groupadd storm
 useradd --gid storm --home-dir /home/storm --create-home --shell /bin/bash storm
 
 unzip -o /vagrant/$1.zip -d /usr/share/
+
 chown -R storm:storm /usr/share/$1
 ln -s /usr/share/$1 /usr/share/storm
 ln -s /usr/share/storm/bin/storm /usr/bin/storm
-
+unzip -o -j /vagrant/storm-starter_lib.zip -d /usr/share/storm/lib
 mkdir /etc/storm
 chown storm:storm /etc/storm
 
