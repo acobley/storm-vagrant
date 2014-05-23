@@ -1,5 +1,5 @@
 apt-get update
-apt-get install -y unzip supervisor openjdk-7-jdk
+apt-get install -y unzip supervisor openjdk-7-jdk emacs
 
 /etc/init.d/supervisor stop
 
@@ -20,6 +20,8 @@ mv /usr/share/java/$2/*.jar /usr/share/storm/lib
 mv /usr/share/java/$2/lib/*.jar /usr/share/storm/lib
 rm /usr/share/apache-storm-0.9.1-incubating/lib/slf4j-api-1.7.5.jar
 rm /usr/share/apache-storm-0.9.1-incubating/lib/slf4j-log4j12-1.7.6.jar
+
+unzip -o /vagrant/Libs.zip -j -d /usr/share/storm/lib
 rm /usr/share/storm/conf/storm.yaml
 cp /vagrant/storm.yaml /usr/share/storm/conf/
 cp /vagrant/cluster.xml /usr/share/storm/logback/
