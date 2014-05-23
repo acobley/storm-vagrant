@@ -11,7 +11,6 @@ unzip -o /vagrant/$1.zip -d /usr/share/
 chown -R storm:storm /usr/share/$1
 ln -s /usr/share/$1 /usr/share/storm
 ln -s /usr/share/storm/bin/storm /usr/bin/storm
-#unzip -o -j /vagrant/storm-starter_lib.zip -d /usr/share/storm/lib
 mkdir /etc/storm
 chown storm:storm /etc/storm
 
@@ -27,6 +26,6 @@ ln -s /usr/share/storm/conf/storm.yaml /etc/storm/storm.yaml
 mkdir /var/log/storm
 chown storm:storm /var/log/storm
 
-sed -i '1s/^//set CLASSPATH=%CLASSPATH%;//usr//share//java /' /usr/share/storm/storm-config.cmd
+//echo "export CLASSPATH=\$CLASSPATH:/usr/share/java" >> /etc/profile
 
 #sed -i 's/${storm.home}\/logs/\/var\/log\/storm/g' /usr/share/storm/logback/cluster.xml
