@@ -27,4 +27,6 @@ ln -s /usr/share/storm/conf/storm.yaml /etc/storm/storm.yaml
 mkdir /var/log/storm
 chown storm:storm /var/log/storm
 
+sed -i '1s/^//set CLASSPATH=%CLASSPATH%;//usr//share//java /' /usr/share/storm/storm-config.cmd
+
 #sed -i 's/${storm.home}\/logs/\/var\/log\/storm/g' /usr/share/storm/logback/cluster.xml
