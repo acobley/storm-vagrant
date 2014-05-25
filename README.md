@@ -23,3 +23,18 @@ If you include a Lib directory then any jar files in there will be added to the 
 watch the Vagrantfile for the versions of Storm and the Cassandra drivers that are downloaded.
 
 (Note: I'm sure this can be done more effectively, but it works for me !) 
+
+
+/*    keyspace for the stormsync    
+CREATE KEYSPACE keyspace2 WITH REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor': 1};
+use keyspace2;
+
+CREATE TABLE StormSync (
+minute varchar,
+processtime varchar,
+interaction_time timeuuid,
+Value varchar,
+SaverId varChar,
+PRIMARY KEY (minute,interaction_time)
+) with CLUSTERING ORDER BY (interaction_time DESC);
+        */
