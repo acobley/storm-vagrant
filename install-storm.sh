@@ -18,7 +18,7 @@ gunzip /vagrant/$2.tar.gz
 tar xvf /vagrant/$2.tar -C /usr/share/java
 mv /usr/share/java/$2/*.jar /usr/share/storm/lib
 mv /usr/share/java/$2/lib/*.jar /usr/share/storm/lib
-rm /usr/share/apache-storm-0.9.1-incubating/lib/slf4j-api-1.7.5.jar
+#rm /usr/share/apache-storm-0.9.1-incubating/lib/slf4j-api-1.7.5.jar
 rm /usr/share/apache-storm-0.9.1-incubating/lib/slf4j-log4j12-1.7.6.jar
 
 unzip -j -o /vagrant/Libs.zip -d /usr/share/storm/lib

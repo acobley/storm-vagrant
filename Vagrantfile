@@ -13,7 +13,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   #needs https://github.com/smdahlen/vagrant-hostmanager
   #run vagrant hostmanager to update hosts file 
-  config.hostmanager.manage_host = true
+  #manage_host set to false !
+  config.hostmanager.manage_host = false
   config.hostmanager.enabled = true
   
   if(!File.exist?(STORM_ARCHIVE))
