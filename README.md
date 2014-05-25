@@ -4,7 +4,7 @@ storm-vagrant
 
 Vagrant config to create a virtualized Storm cluster
 
-Pulled from https://github.com/ptgoetz/storm-vagrant
+Forked from https://github.com/ptgoetz/storm-vagrant
 
 Usage:
 
