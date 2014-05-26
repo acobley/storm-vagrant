@@ -20,7 +20,11 @@ for a vagrant cassandra provisioner.
 
 If you include a Lib directory then any jar files in there will be added to the storm libs directory
 
-watch the Vagrantfile for the versions of Storm and the Cassandra drivers that are downloaded.
+To run the topology, vagrant ssh to storm1 or storm2 and run the stirm jar command:
+
+/usr/share/storm/bin/storm jar /vagrant/storm-starter.jar storm.starter.ExclamationTopolog
+
+Watch the Vagrantfile for the versions of Storm and the Cassandra drivers that are downloaded.
 
 (Note: I'm sure this can be done more effectively, but it works for me !) 
 
