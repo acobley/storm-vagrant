@@ -22,7 +22,9 @@ If you include a Lib directory then any jar files in there will be added to the 
 
 To run the topology, vagrant ssh to storm1 or storm2 and run the storm jar command:
 
-/usr/share/storm/bin/storm jar /vagrant/storm-starter.jar storm.starter.ExclamationTopology
+/usr/share/storm/bin/storm jar /vagrant/storm-starter.jar storm.starter.ExclamationTopology TopologyName
+
+Where TopologyName is the name you want to call this instance
 
 Watch the Vagrantfile for the versions of Storm and the Cassandra drivers that are downloaded.
 
