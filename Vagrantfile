@@ -31,6 +31,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     zookeeper.vm.network "private_network", ip: "192.168.2.50"
     zookeeper.vm.hostname = "zookeeper"
     zookeeper.vm.provision "shell", path: "install-zookeeper.sh"
+    zookeeper.hostmanager.aliases = %w(zookeeper.defaultdomain zookeeper-alias)
   end
 
   config.vm.define "nimbus" do |nimbus|
@@ -47,6 +48,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     nimbus.vm.provision "shell", path: "config-supervisord.sh", args: "drpc"
     
     nimbus.vm.provision "shell", path: "start-supervisord.sh"
+    nimbus.hostmanager.aliases = %w(nimbus.defaultdomain nimbus-alias)
   end
 
   config.vm.define "storm1" do |supervisor|
@@ -61,6 +63,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     supervisor.vm.provision "shell", path: "config-supervisord.sh", args: "logviewer"
     
     supervisor.vm.provision "shell", path: "start-supervisord.sh"
+    supervisor.hostmanager.aliases = %w(storm1.defaultdomain storm1-alias)
     
   end
   
@@ -76,6 +79,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     supervisor.vm.provision "shell", path: "config-supervisord.sh", args: "logviewer"
     
     supervisor.vm.provision "shell", path: "start-supervisord.sh"
+    supervisor.hostmanager.aliases = %w(storm2.defaultdomain storm2-alias)
     
   end
   

@@ -21,7 +21,7 @@ mv /usr/share/java/$2/lib/*.jar /usr/share/storm/lib
 #rm /usr/share/apache-storm-0.9.1-incubating/lib/slf4j-api-1.7.5.jar
 rm /usr/share/apache-storm-0.9.1-incubating/lib/slf4j-log4j12-1.7.6.jar
 
-#unzip -j -o /vagrant/Libs.zip -d /usr/share/storm/lib
+
 cp /vagrant/Libs/*.jar /usr/share/storm/lib
 rm /usr/share/storm/conf/storm.yaml
 cp /vagrant/storm.yaml /usr/share/storm/conf/
@@ -30,7 +30,5 @@ ln -s /usr/share/storm/conf/storm.yaml /etc/storm/storm.yaml
 
 mkdir /var/log/storm
 chown storm:storm /var/log/storm
-
-#echo "export CLASSPATH=\$CLASSPATH:/usr/share/java" >> /etc/profile
 
 #sed -i 's/${storm.home}\/logs/\/var\/log\/storm/g' /usr/share/storm/logback/cluster.xml

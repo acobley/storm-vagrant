@@ -11,7 +11,9 @@ storm.messaging.netty.max_retries: 10
 storm.messaging.netty.min_wait_ms: 1000
 storm.messaging.netty.max_wait_ms: 5000
 
+
 drpc.servers:
   - "nimbus"
+
   
 java.library.path: "/usr/local/lib:/opt/local/lib:/usr/lib:/usr/share/java"
