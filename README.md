@@ -42,4 +42,13 @@ Value varchar,
 SaverId varChar,
 PRIMARY KEY (minute,interaction_time)
 ) with CLUSTERING ORDER BY (interaction_time DESC);
-        */
+        
+
+NOTE:
+If you see a lot of this sort of error:
+
+b.s.d.supervisor [INFO] 59012fc4-f123-49f7-951a-12fff29ab328 still hasn't started
+
+check your jar file names in the Libs directory.  If a file has a space character it will cause the cluster version to start.
+
+
