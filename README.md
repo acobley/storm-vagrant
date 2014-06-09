@@ -46,6 +46,7 @@ processtime varchar,
 interaction_time timeuuid,
 Value varchar,
 SaverId varChar,
+host varchar,
 PRIMARY KEY (minute,interaction_time)
 ) with CLUSTERING ORDER BY (interaction_time DESC);
         
