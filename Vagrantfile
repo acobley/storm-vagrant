@@ -51,38 +51,38 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     nimbus.hostmanager.aliases = %w(nimbus.defaultdomain nimbus-alias)
   end
 
-  config.vm.define "storm1" do |supervisor|
-    supervisor.vm.box = "precise"
-    supervisor.vm.network "private_network", ip: "192.168.2.52"
-    supervisor.vm.hostname = "storm1"
+server_count = 4
+network = '192.168.2.'
+first_ip = 52
+servers = []
+
+(0..server_count-1).each do |i|
+  name = 'storm' + (i + 1).to_s
+  ip = network + (first_ip + i).to_s 
+  servers << {'name' => name,
+              'ip' => ip}
+end
+
+
+  servers.each do |server|
     
-    supervisor.vm.provision "shell", path: "install-storm.sh", args: "#{STORM_VERSION} #{CASSANDRA_DRIVER_VERSION}"
-    
-    supervisor.vm.provision "shell", path: "config-supervisord.sh", args: "supervisor"
-    
-    supervisor.vm.provision "shell", path: "config-supervisord.sh", args: "logviewer"
-    
-    supervisor.vm.provision "shell", path: "start-supervisord.sh"
-    supervisor.hostmanager.aliases = %w(storm1.defaultdomain storm1-alias)
-    
+    config.vm.define server['name'] do |config2|
+		config2.vm.box = "precise"
+		config2.vm.network "private_network", ip: server['ip']
+		config2.vm.hostname = server['name']
+	
+		config2.vm.provision "shell", path: "install-storm.sh", args: "#{STORM_VERSION} #{CASSANDRA_DRIVER_VERSION}"
+	
+		config2.vm.provision "shell", path: "config-supervisord.sh", args: "supervisor"
+	
+		config2.vm.provision "shell", path: "config-supervisord.sh", args: "logviewer"
+	
+		config2.vm.provision "shell", path: "start-supervisord.sh"
+		
+	
+	  end
   end
-  
-  config.vm.define "storm2" do |supervisor|
-    supervisor.vm.box = "precise"
-    supervisor.vm.network "private_network", ip: "192.168.2.53"
-    supervisor.vm.hostname = "storm2"
-    
-    supervisor.vm.provision "shell", path: "install-storm.sh", args: "#{STORM_VERSION} #{CASSANDRA_DRIVER_VERSION}"
-    
-    supervisor.vm.provision "shell", path: "config-supervisord.sh", args: "supervisor"
-    
-    supervisor.vm.provision "shell", path: "config-supervisord.sh", args: "logviewer"
-    
-    supervisor.vm.provision "shell", path: "start-supervisord.sh"
-    supervisor.hostmanager.aliases = %w(storm2.defaultdomain storm2-alias)
-    
-  end
-  
+
 
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
