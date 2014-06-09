@@ -18,7 +18,11 @@ https://github.com/acobley/vagrant-cassandra
 
 for a vagrant cassandra provisioner.
 
-If you include a Lib directory then any jar files in there will be added to the storm libs directory
+If you include a Libs directory then any jar files in there will be added to the storm libs directory
+
+The topology jar file, storm-starter.jar is exported from this cut down storm starter project:
+
+https://github.com/acobley/CassandraStorm
 
 To run the topology, vagrant ssh to storm1 or storm2 and run the storm jar command:
 
