@@ -32,6 +32,8 @@ Where TopologyName is the name you want to call this instance
 
 Watch the Vagrantfile for the versions of Storm and the Cassandra drivers that are downloaded.
 
+change server_count value if you want a different number of supervisor nodes (4 is the number in this Vagrant file)
+
 (Note: I'm sure this can be done more effectively, but it works for me !) 
 
 /*    keyspace for the stormsync    
